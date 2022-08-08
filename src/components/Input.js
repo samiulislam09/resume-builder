@@ -10,7 +10,7 @@ function Input() {
     const [linkedin, setLinkedin] = useState('');
     const [github, setGithub] = useState('');
     const [leetcode, setLeetcode] = useState('');
-    const [workexperience, setWorkexperience] = useState([{companyName:'', position:'', from:'', to:'', responsibilitirs:[]}]);
+    const [workexperience, setWorkexperience] = useState([{companyName:'', position:'', from:'', to:'', responsibilities:[]}]);
     const [course, setCourse] = useState([{ courseName: '', website: '' }]);
     const [education, setEducation] = useState([{ degree: '', schoolName: '', cgpa: '' }]);
     const [hardSkill, setHardSkill] = useState([]);
@@ -21,6 +21,14 @@ function Input() {
 
     // handle work experience
     const handleWorkExperience = (e) => {
+        e.preventDefault();
+        const company = e.target.Company.value;
+        const position = e.target.Position.value;
+        const fromDate = e.target.from.value;
+        const toDate = e.target.to.value;
+        const responsibility = e.target.Responsibilities.value;
+        const data = { companyName: company, position: position, from: fromDate, to: toDate, responsibilities: [responsibility] }
+        console.log(data)
         
     }
 
@@ -49,9 +57,9 @@ function Input() {
           </div>
           {/* work experience */}
           <p className='my-6 font-bold text-xl'>Work Experience</p>
-          <form>
+          <form onSubmit={handleWorkExperience}>
               <div className="grid md:grid-cols-2 md:gap-6">
-                  <Inputtemplate name='Company name' type='text'></Inputtemplate>
+                  <Inputtemplate name='Company' type='text'></Inputtemplate>
                   <Inputtemplate name='Position' type='text'></Inputtemplate>
               </div>
               <p>workdate</p>
@@ -62,6 +70,7 @@ function Input() {
               <div className="">
                   <Inputtemplate name='Responsibilities' type='text'></Inputtemplate>
               </div>
+              <button type='submit' className='btn btn-primary'>set value</button>
           </form>
           {/* course and training */}
           <p className='my-6 font-bold text-xl'>Course and training</p>
