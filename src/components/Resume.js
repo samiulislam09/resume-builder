@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Resume({ name, careerObj, address, phone, email, linkedin, github, leetcode, workexperience, courses, education, hardSkill, softSkills, interests, reference }) {
+function Resume({ name, title, careerObj, address, phone, email, linkedin, github, leetcode, workexperience, courses, education, hardSkill, softSkills, interests, reference }) {
   console.log("hardSkill", hardSkill)
   return (
       <div className='flex justify-center  border-solid mt-10 mx-auto w-3/4 border-2 border-sky-500'>
@@ -81,23 +81,30 @@ function Resume({ name, careerObj, address, phone, email, linkedin, github, leet
           </div>
       <div className='bg-white w-9/12 p-10'>
         <h1 className='font-bold text-2xl'>{ name }</h1>
-        <h1 className='font-bold text-lg'>Junior Web developer</h1>
+        <h1 className='font-bold text-lg'>{title}</h1>
               <h1 className='text-gray-500'>
           {
             careerObj
                   }
               </h1>
               {
-                workexperience?.companyName && <div>
-                  <h1 className='font-semibold uppercase tracking-wider my-2 text-gray-500'>Experience</h1>
-                  <h1 className='text-gray-500 font-semibold'>{workexperience.position} ({workexperience.from}-{workexperience.to})</h1>
-                  <h1 className='font-semibold tracking-wider my-6 text-gray-600'>{workexperience.companyName}</h1>
+                workexperience && <div>
+                  <h1 className='font-bold text-2xl uppercase tracking-wider my-2 text-gray-500'>Experience</h1>
+                  <hr className='h-2' />
                   {
-                    workexperience?.responsibilities?.map((res, index) => <h1 key={res + "" + index} className='text-gray-500'>{res}</h1>)
+                    workexperience.map((exp, index) => <div key={exp+""+index}>
+                      <h1 className='font-bold font-2xl'>{exp.companyName }</h1>
+                      <h1 className='text-gray-500 font-semibold'>{exp.position} ({exp.from} to {exp.to})</h1>
+                      <h1 className='font-semibold tracking-wider text-gray-600'>{workexperience.companyName}</h1>
+                      {
+                        exp?.responsibilities?.map((res, index) => <h1 key={res + "" + index} className='text-gray-500'>{res}</h1>)
+                      }
+                          </div>)
                   }
 
                 </div>
               }
+              
               
           </div>
     </div>

@@ -4,6 +4,7 @@ import Resume from './Resume';
 
 function Input() {
     const [name, setName] = useState('');
+    const [title, setTitle] = useState('');
     const [careerObj, setCareerObj] = useState('');
     const [address, setAddress] = useState('');
     const [phone, setPhone] = useState('');
@@ -35,6 +36,7 @@ function Input() {
         e.target.to.value = '';
         e.target.Responsibilities.value = '';
     };
+    console.log(workexperience)
     // handle courses
     const handleCourses = (e) => {
         e.preventDefault()
@@ -91,6 +93,7 @@ function Input() {
               <p className='my-6 font-bold text-xl'>Basic Info</p>
               <div>
                   <Inputtemplate name='Name' type='text' click={(e) => setName(e.target.value)}></Inputtemplate>
+                  <Inputtemplate name='Title' type='text' click={(e) => setTitle(e.target.value)}></Inputtemplate>
                   <Inputtemplate name='Career Objective' type='text' click={(e) => setCareerObj(e.target.value)}></Inputtemplate>
               </div>
               {/* personal information */}
@@ -140,22 +143,22 @@ function Input() {
                       <Inputtemplate name='School' type='text'></Inputtemplate>
                       <Inputtemplate name='cgpa' type='text'></Inputtemplate>
                   </div>
-                  <input type="submit" value="Set value" />
+                  <input type="submit" value="Set value" className='btn btn-primary' />
               </form>
               <p className='my-6 font-bold text-xl'>Hard Skills</p>
               <form onSubmit={handleHardSkill}>
                   <Inputtemplate name='Hard' type='text'></Inputtemplate>
-                  <input type="submit" value="add" />
+                  <input type="submit" value="Set value" className='btn btn-primary' />
               </form>
               <p className='my-6 font-bold text-xl'>Soft Skills</p>
               <form onSubmit={handleSoftSkill}>
                   <Inputtemplate name='Soft' type='text'></Inputtemplate>
-                  <input type="submit" value="add" />
+                  <input type="submit" value="Set value" className='btn btn-primary' />
               </form>
               <p className='my-6 font-bold text-xl'>Interests</p>
               <form onSubmit={handleInterests}>
                   <Inputtemplate name='Interest' type='text'></Inputtemplate>
-                  <input type="submit" value="add" />
+                  <input type="submit" value="Set value" className='btn btn-primary' />
               </form>
               <p className='my-6 font-bold text-xl'>Referrence</p>
               <form onSubmit={handleReferrence}>
@@ -170,6 +173,7 @@ function Input() {
           <h1 className='text-center text-2xl font-serif'>your Resume</h1>
           <div>
               <Resume const name={name}
+                  title={title}
                   careerObj={careerObj}
                   address={address}
                   phone={phone}
