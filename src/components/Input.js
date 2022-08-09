@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Inputtemplate from './Inputtemplate'
+import ReactToPrint from 'react-to-print';
+import {useReactToPrint} from 'react-to-print'
 import Resume from './Resume';
 
 function Input() {
@@ -19,6 +21,13 @@ function Input() {
     const [softSkills, setSoftSkills] = useState([]);
     const [interests, setInterests] = useState([]);
     const [reference, setReferrence] = useState({});
+
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+        documentTitle: 'emp-data',
+        onAfterPrint:()=>alert('Print success')
+    })
 
     // handle work experience
     const handleWorkExperience = (e) => {
@@ -89,6 +98,7 @@ function Input() {
 
   return (
       <div>
+          <ReactToPrint></ReactToPrint>
           <div className='bg-black-500 w-5/6 lg:w-3/4  mx-auto font-serif'>
               <p className='my-6 font-bold text-xl'>Basic Info</p>
               <div>
@@ -172,7 +182,9 @@ function Input() {
           </div>
           <h1 className='text-center text-2xl font-serif'>your Resume</h1>
           <div>
-              <Resume const name={name}
+              <Resume
+                  
+                  name={name}
                   title={title}
                   careerObj={careerObj}
                   address={address}
