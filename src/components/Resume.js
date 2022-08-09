@@ -104,6 +104,19 @@ function Resume({ name, title, careerObj, address, phone, email, linkedin, githu
 
                 </div>
               }
+              {
+                courses && <div>
+                  <h1 className='font-bold text-2xl uppercase tracking-wider my-2 text-gray-500'>Courses/Training</h1>
+                  <hr className='h-2' />
+                  {
+                    courses.map((course, index) => <div key={course+""+index}>
+                      <h1 className='font-bold tracking-wider text-gray-600'>{course.courseName }</h1>
+                        <h1 className='text-sm tracking-wider text-gray-600'>{course.website}</h1>
+                      </div>)
+                  }
+
+                </div>
+              }
               
               
           </div>
